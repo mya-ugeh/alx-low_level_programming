@@ -1,25 +1,32 @@
 #include <stdio.h>
 /**
   * main - entry code
-  * Description: fibonacci numbers
+  * Description: fibonacci number
   *
   * Return: 0
   */
 int main(void)
 {
-	int fn = 1;
-	int sn = 2;
-	int n = 50;
-	int i;
+	int count = 3;
+	long int first = 1, second = 2;
+	long int next = first + second;
 
-	printf("%d, %d", fn, sn);
-	for (i = 3; i <= n; i++)
+	printf("%lu, ", first);
+	printf("%lu, ", second);
+	while (count <= 50)
 	{
-		int next = fn + sn;
-		printf(", %d", next);
-		fn = sn;
-		sn = next;
+		if (count == 50)
+		{
+			printf("%lu \n", next);
+		}
+		else
+		{
+			printf("%lu, ", next);
+		}
+		first = second;
+		second = next;
+		next = first + second;
+		count++;
 	}
-	printf("\n");
 	return (0);
 }
