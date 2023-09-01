@@ -3,8 +3,8 @@
 /**
   * main - check the code
   *
-  * argc: number of argument
-  * argv: print string
+  * @argc: prints number of argument
+  * @argv: print string
   * Return: 0
   */
 int main(int argc, char *argv[])
