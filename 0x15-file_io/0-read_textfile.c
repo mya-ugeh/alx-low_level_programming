@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <fcntl.h>
 /**
  * read_textfile - Reads a text file and prints it to standard output.
  * @filename: The name of the file to read.
@@ -11,12 +11,12 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	if (filename == NULL)
-		return (0);
-
 	int file_descriptor;
 	ssize_t bytes_read, bytes_written;
 	char *buffer;
+
+	if (filename == NULL)
+		return (0);
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
