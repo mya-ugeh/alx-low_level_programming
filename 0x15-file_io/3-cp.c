@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	int fd_from, fd_to, bytes_read, bytes_written;
 	char buffer[1024];
 
-	if (argc != 3)
+	if (argc != 3 && argc != 2)
 	{
 		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
 		exit(97);
@@ -27,6 +27,9 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
+	if (argv == 2)
+		fd_to = STDOUT_FILENO;
+
 	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_to == -1)
@@ -48,7 +51,7 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 	}
-	if (close(fd_from) == -1 || close(fd_to) == -1)
+	if (close(fd_from) == -1 || (argc == 3 && close(fd_to) == -1))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
 		exit(100);
